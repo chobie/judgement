@@ -1,13 +1,14 @@
 <?php
 namespace Kuroko\CodeStyleFilter;
 
+use \Kuroko\DoubleLinkedList;
 use \Kuroko\Token;
 use \Kuroko\DoubleLinkedListNode;
 use \Kuroko\CodeStyleFilter;
 
 class Others extends CodeStyleFilter
 {
-	public function apply($node)
+	public function apply(DoubleLinkedListNode $node)
 	{
 		$token = $node->data;
 		switch($token->data) {

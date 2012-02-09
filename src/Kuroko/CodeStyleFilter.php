@@ -5,6 +5,8 @@ abstract class CodeStyleFilter
 {
 	protected $config;
 
+	abstract public function apply(DoubleLinkedListNode $node);
+
 	public function __construct($config)
 	{
 		$this->config = $config;

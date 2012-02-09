@@ -7,7 +7,7 @@ use \Kuroko\Token;
 
 class BeforeLeftBraces extends CodeStyleFilter
 {
-	public function apply($node)
+	public function apply(DoubleLinkedListNode $node)
 	{
 		$token = $node->data;
 		//@todo 前のopcodeでなにするか変える

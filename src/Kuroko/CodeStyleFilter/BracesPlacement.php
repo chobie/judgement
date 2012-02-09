@@ -7,7 +7,7 @@ use \Kuroko\CodeStyleFilter;
 
 class BracesPlacement extends CodeStyleFilter
 {
-	public function apply($node)
+	public function apply(DoubleLinkedListNode $node)
 	{
 		$token = $node->data;
 

@@ -1,12 +1,13 @@
 <?php
 namespace Kuroko\CodeStyleFilter;
 
+use \Kuroko\DoubleLinkedList;
 use \Kuroko\DoubleLinkedListNode;
 use \Kuroko\Token;
 
 class BeforeParentheses extends \Kuroko\CodeStyleFilter
 {
-	public function apply(\Kuroko\DoubleLinkedListNode $node)
+	public function apply(DoubleLinkedListNode $node)
 	{
 		$token = $node->data;
 		if ($token->data == "(") {

@@ -7,7 +7,7 @@ use \Kuroko\Token;
 
 class ArroundOperators extends CodeStyleFilter
 {
-	public function apply($node)
+	public function apply(DoubleLinkedListNode $node)
 	{
 		$token = $node->data;
 		switch($token->data) {
