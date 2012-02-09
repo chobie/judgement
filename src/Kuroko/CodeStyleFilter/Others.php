@@ -15,7 +15,7 @@ class Others extends CodeStyleFilter
 			case ",":
 			case ";":
 				if ($node->next->data->type != T_WHITESPACE) {
-					$this->inject(new DoubleLinkedListNode(new Token(array(T_WHITESPACE," ",0))), $node, $node->next);
+					$this->inject($this->whitespace(), $node, $node->next);
 				}
 				break;
 		}

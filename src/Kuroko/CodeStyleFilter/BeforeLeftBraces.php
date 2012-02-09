@@ -20,7 +20,7 @@ class BeforeLeftBraces extends CodeStyleFilter
 					$stack[] = $tmp;
 					continue;
 				} else if ($tmp->data->data == ")"){
-					$this->inject(new DoubleLinkedListNode(new Token(array(T_WHITESPACE," ",0))), $tmp, $node);
+					$this->inject($this->whitespace(), $tmp, $node);
 				} else {
 					return false;
 				}

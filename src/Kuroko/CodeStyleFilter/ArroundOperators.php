@@ -34,10 +34,10 @@ class ArroundOperators extends CodeStyleFilter
 			case "%":
 			case ".":
 				if ($node->previous->data->type != T_WHITESPACE) {
-					$this->inject(new DoubleLinkedListNode(new Token(array(T_WHITESPACE," ",0))), $node->previous, $node);
+					$this->inject($this->whitespace(), $node->previous, $node);
 				}
 				if ($node->next->data->type != T_WHITESPACE) {
-					$this->inject(new DoubleLinkedListNode(new Token(array(T_WHITESPACE," ",0))), $node, $node->next);
+					$this->inject($this->whitespace(), $node, $node->next);
 				}
 				break;
 		}

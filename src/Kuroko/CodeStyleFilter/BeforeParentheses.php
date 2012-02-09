@@ -18,19 +18,19 @@ class BeforeParentheses extends \Kuroko\CodeStyleFilter
 					$stack[] = $tmp;
 					continue;
 				} else if ($tmp->data->type == T_IF){
-					$this->inject(new DoubleLinkedListNode(new Token(array(T_WHITESPACE," ",0))), $tmp, $node);
+					$this->inject($this->whitespace(), $tmp, $node);
 				} else if ($tmp->data->type == T_ELSEIF){
-					$this->inject(new DoubleLinkedListNode(new Token(array(T_WHITESPACE," ",0))), $tmp, $node);
+					$this->inject($this->whitespace(), $tmp, $node);
 				} else if ($tmp->data->type == T_FOREACH){
-					$this->inject(new DoubleLinkedListNode(new Token(array(T_WHITESPACE," ",0))), $tmp, $node);
+					$this->inject($this->whitespace(), $tmp, $node);
 				} else if ($tmp->data->type == T_WHILE){
-					$this->inject(new DoubleLinkedListNode(new Token(array(T_WHITESPACE," ",0))), $tmp, $node);
+					$this->inject($this->whitespace(), $tmp, $node);
 				} else if ($tmp->data->type == T_FOR){
-					$this->inject(new DoubleLinkedListNode(new Token(array(T_WHITESPACE," ",0))), $tmp, $node);
+					$this->inject($this->whitespace(), $tmp, $node);
 				} else if ($tmp->data->type == T_SWITCH){
-					$this->inject(new DoubleLinkedListNode(new Token(array(T_WHITESPACE," ",0))), $tmp, $node);
+					$this->inject($this->whitespace(), $tmp, $node);
 				} else if ($tmp->data->type == T_CATCH){
-					$this->inject(new DoubleLinkedListNode(new Token(array(T_WHITESPACE," ",0))), $tmp, $node);
+					$this->inject($this->whitespace(), $tmp, $node);
 				} else {
 					return false;
 				}
