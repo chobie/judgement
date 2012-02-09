@@ -12,12 +12,16 @@ class TernaryOperator extends CodeStyleFilter
 		$token = $node->data;
 		switch($token->data) {
 			case "?":
+				if ($node->previous->data->type != T_WHITESPACE) {
+					$this->inject($this->whitespace(), $node->previous, $node);
+				}
+				/* do not break here */
 			case ":":
 				if ($node->next->data->type != T_WHITESPACE) {
-					$this->inject(new DoubleLinkedListNode(new Token(array(T_WHITESPACE," ",0))), $node, $node->next);
+					$this->inject($this->whitespace(), $node, $node->next);
 				}
 				if ($node->next->data->type != T_WHITESPACE) {
-					$this->inject(new DoubleLinkedListNode(new Token(array(T_WHITESPACE," ",0))), $node, $node->next);
+					$this->inject($this->whitespace(), $node, $node->next);
 				}
 				break;
 		}
