@@ -41,6 +41,7 @@ class Application extends BaseApplication
 
 	protected function registerCommands()
 	{
+		$this->add(new Command\FilterCommand());
 		$this->add(new Command\HelpCommand());
 	}
 }

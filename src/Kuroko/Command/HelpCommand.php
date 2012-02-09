@@ -17,6 +17,6 @@ class HelpCommand extends Command
 
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
-		$output->writeln("judgement <file/to/path>");
+		$output->writeln("judgement filter <file/to/path>");
 	}
 }
