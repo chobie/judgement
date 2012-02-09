@@ -1,0 +1,24 @@
+{
+    "name": "chobie/judgement",
+    "description": "Code beautifiler",
+    "keywords": ["package", "dependency", "autoload"],
+    "homepage": "http://getcomposer.org/",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Shuhei Tanuma",
+            "email": "chobieee@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "symfony/console": ">2.0,<2.2-dev",
+        "symfony/finder": ">2.0,<2.2-dev",
+        "symfony/process": ">2.0,<2.2-dev"
+    },
+    "autoload": {
+        "psr-0": { "Kuroko": "src/" }
+    },
+    "bin": ["bin/judgement"]
+}

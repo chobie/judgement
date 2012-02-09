@@ -1,0 +1,17 @@
+{
+    "hash": "8647235d670a6f0cdcebfa289e3d21bf",
+    "packages": [
+        {
+            "package": "symfony\/process",
+            "version": "2.1.0-dev"
+        },
+        {
+            "package": "symfony\/finder",
+            "version": "2.1.0-dev"
+        },
+        {
+            "package": "symfony\/console",
+            "version": "2.1.0-dev"
+        }
+    ]
+}
