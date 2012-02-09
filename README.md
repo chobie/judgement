@@ -25,7 +25,7 @@ php -d detect_unicode=0 composer.phar install
 # Usage
 
 ````
-php judgement.php <path/to/file>
+bin/judgement filter <path/to/file>
 ````
 
 # License
