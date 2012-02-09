@@ -29,3 +29,7 @@ will be available.
 # Config file editor.
 
 will be available.
+
+# Todo
+
+too many!
