@@ -12,6 +12,16 @@ PHP5.3 higher
 
 # Experimental
 
+# Install
+
+````
+git clone https://github.com/chobie/judgement.git
+cd judgement
+wget http://getcomposer.org/composer.phar
+php -d detect_unicode=0 composer.phar install
+
+````
+
 # Usage
 
 ````
