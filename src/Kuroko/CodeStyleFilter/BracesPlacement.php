@@ -13,7 +13,7 @@ class BracesPlacement extends CodeStyleFilter
 		if($token->type == T_CLASS) {
 			$lbrace = $this->expect($node, \Kuroko\Token::T_BRACE_LEFT);
 			if ($lbrace->previous->data->type != T_WHITESPACE) {
-				$this->inject(new DoubleLinkedListNode(new Token(array(T_NEWLINE,"\n",0))), $lbrace->previous, $lbrace);
+				$this->inject(new DoubleLinkedListNode(new Token(array(Token::T_NEWLINE,"\n",0))), $lbrace->previous, $lbrace);
 			}
 		}
 	}

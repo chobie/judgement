@@ -11,11 +11,12 @@ class TokenParser
 			if (is_array($token) && $token[0] == T_WHITESPACE) {
 				while(preg_match("/^\r?\n/",$token[1],$match)) {
 					$result[] = array(
-						T_NEWLINE,
+						Token::T_NEWLINE,
 						"\n",
 						0
 					);
-					$token[1] = substr($token[1],strlen($match[1])+1);
+
+					$token[1] = substr($token[1], strlen($match[0]) + 1);
 				}
 			}
 			$result[] = $token;
