@@ -6,7 +6,7 @@ class Foo
 		global $k, $s1;
 		$arr = array(0 => "zero", 1=>"one");
 		for($i = 0; $i < $x; $i++){
-			$y +=($y ^ 0x123)<<2;
+			$y +=($y^0x123)<<2;
 		}
 		$k = $x > 15 ? 1 : 2;
 		do {
