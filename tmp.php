@@ -4,7 +4,7 @@ class Foo
 	function foo($x, $z)
 	{
 		global $k, $s1;
-		$arr = array(0 => "zero", 1 => "one");
+		$arr = array(0 => "zero", 1=>"one");
 		for($i = 0; $i < $x; $i++){
 			$y +=($y ^ 0x123)<<2;
 		}

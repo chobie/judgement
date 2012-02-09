@@ -14,6 +14,7 @@ class ArroundOperators extends CodeStyleFilter
 			case "=":
 			case "==":
 			case "===":
+			case "=>":
 			case "!=":
 			case "!==":
 			case "-=":

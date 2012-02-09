@@ -160,7 +160,7 @@
 	<braces>
 		<entry>
 			<key>in_class_declraration</key>
-			<value>eol</value>
+			<value>next</value>
 		</entry>
 		<entry>
 			<key>in_method_declraration</key>
