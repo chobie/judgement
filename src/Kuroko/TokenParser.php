@@ -12,14 +12,21 @@ class TokenParser
 				while(preg_match("/^\r?\n/",$token[1],$match)) {
 					$result[] = array(
 						Token::T_NEWLINE,
-						"\n",
+						$match[0],
 						0
 					);
 
-					$token[1] = substr($token[1], strlen($match[0]) + 1);
+					$token[1] = substr($token[1], strlen($match[0]));
+					if (empty($token[1])) {
+						$token = null;
+						break;
+					}
 				}
 			}
-			$result[] = $token;
+
+			if (!is_null($token)){
+				$result[] = $token;
+			}
 		}
 
 		return $result;

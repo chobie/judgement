@@ -1,5 +1,6 @@
 <?php
-class Foo{
+class Foo
+{
 	function foo($x, $z)
 	{
 		global $k, $s1;

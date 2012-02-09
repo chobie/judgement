@@ -157,4 +157,18 @@
 			</entry>
 		</before_left_brace>
 	</spaces>
+	<braces>
+		<entry>
+			<key>in_class_declraration</key>
+			<value>eol</value>
+		</entry>
+		<entry>
+			<key>in_method_declraration</key>
+			<value>next</value>
+		</entry>
+		<entry>
+			<key>default</key>
+			<value>eol</value>
+		</entry>
+	</braces>
 </codestyle>

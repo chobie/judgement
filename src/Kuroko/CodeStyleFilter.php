@@ -10,6 +10,20 @@ abstract class CodeStyleFilter
 		$this->config = $config;
 	}
 
+	public function newline()
+	{
+		return new DoubleLinkedListNode(new Token(array(Token::T_NEWLINE,"\n",0)));
+	}
+
+	public function delete(DoubleLinkedListNode $ws)
+	{
+		$previous = $ws->previous;
+		$next = $ws->next;
+
+		$next->previous = $previous;
+		$previous->next = $next;
+	}
+
 	public function inject(DoubleLinkedListNode $ws,DoubleLinkedListNode $previous,DoubleLinkedListNode $next)
 	{
 		$previous->next = $ws;
