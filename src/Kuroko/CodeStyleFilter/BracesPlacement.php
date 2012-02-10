@@ -30,7 +30,7 @@ class BracesPlacement extends CodeStyleFilter
 		} else if ($token->type == T_FUNCTION) {
 			$newline = $this->expectr($node, Token::T_NEWLINE);
 
-			if ($newline->next->data->type == T_WHITESPACE) {
+			if ($newline->next->data->type == Token::T_INDENT) {
 				// @Todo: detect indent char.
 				$tab = strlen($newline->next->data->data);
 			} else {
