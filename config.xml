@@ -157,18 +157,30 @@
 			</entry>
 		</before_left_brace>
 	</spaces>
-	<braces>
-		<entry>
-			<key>in_class_declraration</key>
-			<value>next</value>
-		</entry>
-		<entry>
-			<key>in_method_declraration</key>
-			<value>next</value>
-		</entry>
-		<entry>
-			<key>default</key>
-			<value>eol</value>
-		</entry>
-	</braces>
+	<wrapping_and_braces>
+		<braces>
+			<entry>
+				<key>in_class_declraration</key>
+				<value>next</value>
+			</entry>
+			<entry>
+				<key>in_method_declraration</key>
+				<value>next</value>
+			</entry>
+			<entry>
+				<key>default</key>
+				<value>eol</value>
+			</entry>
+		</braces>
+		<ternay_operation>
+			<entry>
+				<key>align_when_multiline</key>
+				<value>false</value>
+			</entry>
+			<entry>
+				<key>question_and_colon_signs_on_next_line</key>
+				<value>false</value>
+			</entry>
+		</ternay_operation>
+	</wrapping_and_braces>
 </codestyle>

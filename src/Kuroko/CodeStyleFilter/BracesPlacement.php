@@ -13,7 +13,7 @@ class BracesPlacement extends CodeStyleFilter
 
 		if($token->type == T_CLASS) {
 			$lbrace = $this->expect($node, \Kuroko\Token::T_BRACE_LEFT);
-			$type = strtolower($this->config['braces.in_class_declraration']);
+			$type = strtolower($this->config['wrapping_and_braces.braces.in_class_declraration']);
 
 			switch($type) {
 				case "next":
@@ -38,7 +38,7 @@ class BracesPlacement extends CodeStyleFilter
 			}
 
 			$lbrace = $this->expect($node, \Kuroko\Token::T_BRACE_LEFT);
-			$type = strtolower($this->config['braces.in_method_declraration']);
+			$type = strtolower($this->config['wrapping_and_braces.braces.in_method_declraration']);
 
 			switch($type) {
 				case "next":
