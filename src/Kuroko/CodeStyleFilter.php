@@ -73,6 +73,27 @@ abstract class CodeStyleFilter
 		} while($current = $current->next);
 	}
 
+	// expect block end
+	public function expectb(DoubleLinkedListNode $node)
+	{
+		$level = 0;
+
+		$current = $node;
+		do {
+			if ($current->data->type == Token::T_BRACE_LEFT) {
+				$level++;
+			} else if ($current->data->type == Token::T_BRACE_RIGHT) {
+				$level--;
+			}
+
+			if (level == 0 && $current->data->type == Token::T_BRACE_RIGHT) {
+				return $current;
+			}
+		} while($current = $current->next);
+
+		throw new \Exception("Mismatched block found");
+	}
+
 	public function expectr(DoubleLinkedListNode $node, $type)
 	{
 		$current = $node;

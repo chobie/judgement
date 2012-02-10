@@ -6,7 +6,10 @@ class Token
 	/* extended constants */
 	const T_NEWLINE = -1;
 	const T_BRACE_LEFT = -2;
-	const T_INDENT = -3;
+	const T_BRACE_RIGHT = -3;
+	const T_INDENT = -4;
+	const T_PAREN_LEFT = -5;
+	const T_PAREN_RIGHT = -6;
 
 	/* default token constants (5.3.8) */
 	const T_FMT = \T_FMT;
@@ -147,6 +150,17 @@ class Token
 			switch($token) {
 				case "{":
 					$number = self::T_BRACE_LEFT;
+					break;
+				case "}":
+					$number = self::T_BRACE_RIGHT;
+					break;
+				case "(":
+					$number = self::T_PAREN_LEFT;
+					break;
+				case ")":
+					$number = self::T_PAREN_RIGHT;
+					break;
+				default:
 					break;
 			}
 
