@@ -74,14 +74,14 @@ class FilterCommand extends Command
 					case Token::T_NEWLINE:
 					case Token::T_WHITESPACE:
 					case Token::T_INDENT:
-						$previous = $current->back;
+						$previous = $current->previous;
 						$previous->next = null;
 						$list->back = $previous;
 						break;
 					default:
 						break 2;
 				}
-			} while ($current = $list->back->previous);
+			} while ($current = $current->previous);
 		}
 
 
