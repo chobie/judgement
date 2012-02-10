@@ -6,6 +6,7 @@ class Token
 	/* extended constants */
 	const T_NEWLINE = -1;
 	const T_BRACE_LEFT = -2;
+	const T_INDENT = -3;
 
 	/* default token constants (5.3.8) */
 	const T_FMT = \T_FMT;

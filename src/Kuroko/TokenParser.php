@@ -8,8 +8,11 @@ class TokenParser
 		$tokens = token_get_all($string);
 		$result = array();
 		foreach ($tokens as $token) {
+			$is_indent = false;
+
 			if (is_array($token) && $token[0] == T_WHITESPACE) {
 				while(preg_match("/^\r?\n/",$token[1],$match)) {
+					$is_indent = true;
 					$result[] = array(
 						Token::T_NEWLINE,
 						$match[0],
@@ -25,6 +28,9 @@ class TokenParser
 			}
 
 			if (!is_null($token)){
+				if ($is_indent) {
+					$token[0] = Token::T_INDENT;
+				}
 				$result[] = $token;
 			}
 		}

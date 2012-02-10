@@ -42,7 +42,7 @@ class BracesPlacement extends CodeStyleFilter
 
 			switch($type) {
 				case "next":
-					if ($lbrace->previous->data->type != Token::T_NEWLINE && $lbrace->previous->data->type != T_WHITESPACE) {
+					if ($lbrace->previous->data->type != Token::T_INDENT) {
 						$this->inject($this->newline(), $lbrace->previous, $lbrace);
 						$this->inject($this->indent($tab), $lbrace->previous, $lbrace);
 					}
