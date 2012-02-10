@@ -66,6 +66,22 @@ class FilterCommand extends Command
 				$list->back = $list->back->previous;
 			}
 		}
+		/* force remove end of newline */
+		if ($config['others.prohibit_end_newline']) {
+			$current = $list->back;
+			do {
+				switch ($current->data->type) {
+					case Token::T_NEWLINE:
+					case Token::T_WHITESPACE:
+					case Token::T_INDENT:
+						$list->back->previous->next = null;
+						$list->back = $list->back->previous;
+						break;
+					default:
+						break 2;
+				}
+			} while ($current = $list->back->previous);
+		}
 
 
 		/* rendering php file */
