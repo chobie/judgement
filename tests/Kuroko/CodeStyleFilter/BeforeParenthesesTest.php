@@ -12,7 +12,7 @@ class BeforeParenthesesTest extends Judgement_CodeStyleFilter_TestCase
 	public function testEnabledIf()
 	{
 		$script = <<<'EOF'
-<?php if($moe){};
+<?php if($moe){}elseif(){};
 EOF;
 
 		$config = $this->getConfig();
@@ -24,13 +24,13 @@ EOF;
 		$this->apply($filter, $tokens);
 		$result = $this->render($tokens);
 
-		$this->assertEquals('<?php if ($moe){};',$result);
+		$this->assertEquals('<?php if ($moe){}elseif (){};',$result);
 	}
 
 	public function testDisabledIf()
 	{
 		$script = <<<'EOF'
-<?php if($moe){};
+<?php if($moe){}elseif(){};
 EOF;
 
 		$config = $this->getConfig();
@@ -40,6 +40,6 @@ EOF;
 		$filter = new BeforeParentheses($config);
 		$this->apply($filter, $tokens);
 		$result = $this->render($tokens);
-		$this->assertEquals('<?php if($moe){};',$result);
+		$this->assertEquals('<?php if($moe){}elseif(){};',$result);
 	}
 }
