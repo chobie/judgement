@@ -53,6 +53,20 @@ class FilterCommand extends Command
 			}
 		} while ($current = $current->next());
 
+		/* force adjust php tag */
+		if ($config['others.prohibit_shoft_tag']) {
+			if($list->front->data->type == Token::T_OPEN_TAG && $list->front->data->data == "<?") {
+				$list->front->data->data = "<?php";
+			}
+		}
+		/* force remove end tag */
+		if ($config['others.prohibit_end_php_tag']) {
+			if($list->back->data->type == Token::T_CLOSE_TAG ) {
+				$list->back->previous->next = null;
+				$list->back = $list->back->previous;
+			}
+		}
+
 
 		/* rendering php file */
 		$current = $list->front;

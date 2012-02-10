@@ -183,4 +183,15 @@
 			</entry>
 		</ternay_operation>
 	</wrapping_and_braces>
+	
+	<others>
+		<entry>
+			<key>prohibit_shoft_tag</key>
+			<value>true</value>
+		</entry>
+		<entry>
+			<key>prohibit_end_php_tag</key>
+			<value>true</value>
+		</entry>
+	</others>
 </codestyle>

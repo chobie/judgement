@@ -1,4 +1,4 @@
-<?php
+<?
 class Foo
 {
 	function foo($x, $z)
