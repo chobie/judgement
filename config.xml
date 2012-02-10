@@ -53,23 +53,23 @@
 			</entry>
 			<entry>
 				<key>if</key>
-				<value>false</value>
+				<value>true</value>
 			</entry>
 			<entry>
 				<key>for</key>
-				<value>false</value>
+				<value>true</value>
 			</entry>
 			<entry>
 				<key>while</key>
-				<value>false</value>
+				<value>true</value>
 			</entry>
 			<entry>
 				<key>switch</key>
-				<value>false</value>
+				<value>true</value>
 			</entry>
 			<entry>
 				<key>catch</key>
-				<value>false</value>
+				<value>true</value>
 			</entry>
 		</before_parentheses>
 		<around_operators>
