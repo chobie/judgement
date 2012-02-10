@@ -17,7 +17,18 @@ class Config implements \ArrayAccess
 
 	public function offsetSet($offset, $value)
 	{
-		throw new \Exception("could not set config dynamically");
+		$entries = explode(".",$offset);
+		$count = count($entries);
+		$current = &$this->config;
+		for ($i = 0; $i < $count; $i++) {
+			if (isset($current[$entries[$i]])) {
+				if ($i+1 == $count) {
+					$current[$entries[$i]] = $value;
+				} else {
+					$current = &$current[$entries[$i]];
+				}
+			}
+		}
 	}
 
 	public function offsetGet($offset)
