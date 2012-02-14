@@ -79,8 +79,11 @@ class BracesPlacement extends CodeStyleFilter
 				break;
 			}
 		} else if ($token->type == Token::T_BRACE_RIGHT) {
-/*			$rbrace = $node;
-			if ($rbrace->next->data->type != Token::T_NEWLINE) {
+			$rbrace = $node;
+			$next = $this->without($rbrace, Token::T_WHITESPACE);
+
+			$expects = array(Token::T_ELSE, Token::T_ELSEIF, Token::T_CATCH, Token::T_INDENT,Token::T_NEWLINE,Token::T_WHITESPACE);
+/*			if (!in_array($next->data->type, $expects)) {
 				if (!is_null($rbrace->next)) {
 					$this->inject($this->newline(), $rbrace, $rbrace->next);
 					$this->inject($this->indent(LevelManager::getLevel()),$rbrace->next,$rbrace->next->next);

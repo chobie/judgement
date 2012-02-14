@@ -73,7 +73,7 @@ abstract class CodeStyleFilter
 
 	public function without(DoubleLinkedListNode $node, $without)
 	{
-		$current = $node;
+		$current = $node->next;
 		do {
 			if ($current->data->type != $type) {
 				return $current;

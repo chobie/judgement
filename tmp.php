@@ -46,7 +46,7 @@ class Foo {
 						break;
 				}
 			} catch(exception $e){
-				echo $val{foo.$num}[$cell{$a}];
+				echo $val{"foo".$num}[$cell{$a}];
 			}
 		} while($x < 0);
 	}
