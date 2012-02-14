@@ -11,6 +11,13 @@ class LevelManager extends CodeStyleFilter
 	protected static $paren = 0;
 	protected static $case = 0;
 	protected static $within_class = false;
+	protected static $within_switch = array();
+	protected static $brace_right_callback = array();
+
+	public function decreaseSwitch()
+	{
+		array_pop(self::$within_switch);
+	}
 
 	public function apply(DoubleLinkedListNode $node)
 	{
@@ -22,12 +29,22 @@ class LevelManager extends CodeStyleFilter
 			if (self::$level == 0 && self::$within_class) {
 				self::$within_class = false;
 			}
+			if (isset(self::$brace_right_callback[self::$level])) {
+				while($callback = array_pop(self::$brace_right_callback[self::$level])) {
+					call_user_func_array($callback, array());
+				}
+			}
 		} else if ($token->type == Token::T_PAREN_LEFT) {
 			self::$paren++;
 		} else if ($token->type == Token::T_PAREN_RIGHT) {
 			self::$paren--;
-		} else if ($token->type == Token::T_CASE) {
+		} else if ($token->type == Token::T_SWITCH) {
+			self::$within_switch[] = array("level"=>self::getLevel());
+
+			self::$brace_right_callback[self::getLevel()][] = array($this, "decreaseSwitch");
+		} else if ($token->type == Token::T_CASE || $token->type == Token::T_DEFAULT) {
 			/* for switch statement */
+			// self::$within_switch[count(self::$within_switch)-1];
 			self::$level++;
 			self::$case++;
 		} else if ($token->type == Token::T_BREAK && (self::$case > 0)) {

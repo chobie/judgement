@@ -28,6 +28,7 @@ class Foo {
 						break;
 					default:
 						$s1 = 'other';
+						break;
 				}
 			} catch(exception $e){
 				echo $val{foo.$num}[$cell{$a}];
