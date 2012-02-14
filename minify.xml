@@ -2,6 +2,9 @@
 <codestyle>
 	<formatter>
 		<entry>
+			<value>Kuroko\CodeStyleFilter\LevelManager</value>
+		</entry>
+		<entry>
 			<value>Kuroko\CodeStyleFilter\Minify</value>
 		</entry>
 	</formatter>

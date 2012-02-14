@@ -9,6 +9,8 @@ use \Kuroko\CodeStyleFilter;
 /* joke filter */
 class Minify extends CodeStyleFilter
 {
+	protected $map = array();
+
 	public function apply(DoubleLinkedListNode $node)
 	{
 		$token = $node->data;
@@ -19,6 +21,15 @@ class Minify extends CodeStyleFilter
 		if ($token->type == Token::T_INDENT) {
 			$this->delete($node);
 		}
+
+		if ($token->type == Token::T_VARIABLE) {
+/*			if (LevelManager::isInsideMethod()) {
+				$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+				$this->map[$token->data] = $chars[count($this->map)];
+				$token->data = '$' . $chars[count($this->map)];
+			}*/
+		}
+
 		if ($token->type == Token::T_WHITESPACE) {
 			$token->data = " ";
 			if ($node->previous->data->type == Token::T_WHITESPACE) {
