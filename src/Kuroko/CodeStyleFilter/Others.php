@@ -11,6 +11,30 @@ class Others extends CodeStyleFilter
 	public function apply(DoubleLinkedListNode $node)
 	{
 		$token = $node->data;
+
+		if ($this->config["others.force_add_method_visibility"]) {
+			if ($token->type == Token::T_FUNCTION && LevelManager::isInsideClass()) {
+				$current = $node->previous;
+				$tokens = array(Token::T_WHITESPACE, Token::T_INDENT, Token::T_NEWLINE);
+				do {
+					if (in_array($current->data->type, $tokens)) {
+						continue;
+					} else {
+						$expects = array(Token::T_PUBLIC, Token::T_PRIVATE, Token::T_PROTECTED);
+						if (in_array($current->data->type, $expects)) {
+							/* visibility ok */
+							break;
+						} else {
+							/* omitted visibility: force add public visibility */
+							$this->inject($this->whitespace(1),$node->previous,$node);
+							$this->inject($this->newVisibility(),$node->previous->previous,$node->previous);
+							break;
+						}
+					}
+				} while ($current = $current->previous);
+			}
+		}
+
 		switch($token->data) {
 			case ";":
 				if (LevelManager::isInsideParentheses()) {

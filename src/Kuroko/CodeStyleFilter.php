@@ -36,6 +36,24 @@ abstract class CodeStyleFilter
 		return new DoubleLinkedListNode(new Token(array(T_WHITESPACE,str_repeat(" ",$size),0)));
 	}
 
+	public function newVisibility($visibility = "public")
+	{
+		switch ($visibility) {
+			case "protected":
+				$data = array(T_PROTECTED,"protected",0);
+				break;
+			case "private":
+				$data = array(T_PRIVATE,"private",0);
+				break;
+			case "public":
+			default:
+				$data = array(T_PUBLIC, "public",0);
+				break;
+		}
+
+		return new DoubleLinkedListNode(new Token($data));
+	}
+
 	public function delete(DoubleLinkedListNode $ws)
 	{
 		$previous = $ws->previous;

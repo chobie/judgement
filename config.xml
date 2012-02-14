@@ -186,8 +186,11 @@
 			</entry>
 		</ternay_operation>
 	</wrapping_and_braces>
-	
 	<others>
+		<entry>
+			<key>force_add_method_visibility</key>
+			<value>true</value>
+		</entry>
 		<entry>
 			<key>prohibit_shoft_tag</key>
 			<value>true</value>
