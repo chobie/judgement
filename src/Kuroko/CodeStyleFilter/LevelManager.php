@@ -17,6 +17,7 @@ class LevelManager extends CodeStyleFilter
 	protected static $brace_left_callback = array();
 	protected static $brace_right_callback = array();
 	protected static $current_block = array();
+	protected static $ternary = false;
 
 	public function decreaseSwitch()
 	{
@@ -63,6 +64,10 @@ class LevelManager extends CodeStyleFilter
 			//self::$level--;
 			self::$sublevel--;
 			self::$case--;
+		} else if ($token->data == "?") {
+			self::$ternary = true;
+		} else if ($token->data == ";") {
+			self::$ternary = false;
 		}
 
 		if ($token->type == Token::T_CLASS) {
@@ -83,6 +88,11 @@ class LevelManager extends CodeStyleFilter
 	public function moe()
 	{
 		self::$within_method = false;
+	}
+
+	public static function isInsideTernaryOperator()
+	{
+		return (bool)self::$ternary;
 	}
 
 	public static function isInsideParentheses()

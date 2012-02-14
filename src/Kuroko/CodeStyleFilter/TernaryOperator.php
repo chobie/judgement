@@ -18,11 +18,13 @@ class TernaryOperator extends CodeStyleFilter
 				}
 				/* do not break here */
 			case ":":
-				if ($node->next->data->type != T_WHITESPACE) {
-					$this->inject($this->whitespace(), $node, $node->next);
-				}
-				if ($node->next->data->type != T_WHITESPACE) {
-					$this->inject($this->whitespace(), $node, $node->next);
+				if (LevelManager::isInsideTernaryOperator()) {
+					if ($node->next->data->type != T_WHITESPACE) {
+						$this->inject($this->whitespace(), $node, $node->next);
+					}
+					if ($node->next->data->type != T_WHITESPACE) {
+						$this->inject($this->whitespace(), $node, $node->next);
+					}
 				}
 				break;
 		}

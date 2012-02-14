@@ -23,6 +23,13 @@ class FilterCommand extends Command
 		;
 	}
 
+	protected function getDefaultFilters()
+	{
+		return array (
+			"Kuroko\\CodeStyleFilter\\LevelManager",
+		);
+	}
+
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
 		$path = $input->getArgument("path");
@@ -42,7 +49,7 @@ class FilterCommand extends Command
 
 		/* obtain formatter classes */
 		$formatter = array();
-		foreach ($config['formatter'] as $f) {
+		foreach (array_merge($this->getDefaultFilters(),$config['formatter']) as $f) {
 			$formatter[] = new $f($config);
 		}
 
