@@ -1,13 +1,10 @@
 <?
-class Foo
-{
+class Foo {
 	function foo($x, $z)
 	{
 		global $k, $s1;
 		$arr = array(0 => "zero", 1=>"one");
-		for($i = 0; $i < $x; $i++){
-			$y +=($y^0x123)<<2;
-		}
+		for($i = 0; $i < $x; $i++){$y +=($y^0x123)<<2;}
 		$k = $x > 15 ? 1 : 2;
 		do {
 			try {
@@ -33,7 +30,7 @@ class Foo
 						$s1 = 'other';
 				}
 			} catch(exception $e){
-				echo $val{foo . $num}[$cell{$a}];
+				echo $val{foo.$num}[$cell{$a}];
 			}
 		} while($x < 0);
 	}

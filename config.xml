@@ -2,6 +2,9 @@
 <codestyle>
 	<formatter>
 		<entry>
+			<value>Kuroko\CodeStyleFilter\LevelManager</value>
+		</entry>
+		<entry>
 			<value>Kuroko\CodeStyleFilter\BeforeParentheses</value>
 		</entry>
 		<entry>
@@ -17,10 +20,10 @@
 			<value>Kuroko\CodeStyleFilter\Others</value>
 		</entry>
 		<entry>
-			<value>Kuroko\CodeStyleFilter\Indentation</value>
+			<value>Kuroko\CodeStyleFilter\BracesPlacement</value>
 		</entry>
 		<entry>
-			<value>Kuroko\CodeStyleFilter\BracesPlacement</value>
+			<value>Kuroko\CodeStyleFilter\Indentation</value>
 		</entry>
 	</formatter>
 	<indents>

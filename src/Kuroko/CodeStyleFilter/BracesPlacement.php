@@ -18,11 +18,21 @@ class BracesPlacement extends CodeStyleFilter
 			switch($type) {
 				case "next":
 					if ($lbrace->previous->data->type != Token::T_NEWLINE) {
+						if ($lbrace->previous->data->type == Token::T_WHITESPACE) {
+							$this->delete($lbrace->previous);
+						}
 						$this->inject($this->newline(), $lbrace->previous, $lbrace);
+						if ($lbrace->next->next->data->type != Token::T_INDENT) {
+							$this->inject($this->indent(LevelManager::getLevel()+1),$lbrace->next,$lbrace->next->next);
+						}
 					}
 					break;
 				case "eol":
-					if ($lbrace->previous->data->type == Token::T_NEWLINE) {
+					if ($lbrace->next->data->type != Token::T_NEWLINE) {
+						$this->inject($this->newline(), $lbrace, $lbrace->next);
+					}
+					if ($lbrace->previous->data->type == Token::T_INDENT) {
+						$this->delete($lbrace->previous);
 						$this->delete($lbrace->previous);
 					}
 				break;
@@ -31,8 +41,7 @@ class BracesPlacement extends CodeStyleFilter
 			$newline = $this->expectr($node, Token::T_NEWLINE);
 
 			if ($newline->next->data->type == Token::T_INDENT) {
-				// @Todo: detect indent char.
-				$tab = strlen($newline->next->data->data);
+				$tab = LevelManager::getLevel();
 			} else {
 				$tab = 0;
 			}
@@ -50,6 +59,22 @@ class BracesPlacement extends CodeStyleFilter
 				case "eol":
 					if ($lbrace->previous->data->type == Token::T_NEWLINE) {
 						$this->delete($lbrace->previous);
+					}
+				break;
+			}
+		} else if ($token->type == Token::T_BRACE_LEFT && $node->previous->data->type != Token::T_VARIABLE) {
+			$lbrace = $node;
+			$type = strtolower($this->config['wrapping_and_braces.braces.default']);
+
+			switch($type) {
+				case "eol":
+					if ($lbrace->previous->data->type == Token::T_INDENT) {
+						$i = $lbrace->previous->data;
+						$i->data = str_repeat(($this->config['indents.use_tab']) ? "\t" : " ",
+							(LevelManager::getLevel()-1) * $this->config['indents.indent']);
+					} else if ($lbrace->next->data->type != Token::T_NEWLINE) {
+						$this->inject($this->newline(), $lbrace, $lbrace->next);
+						$this->inject($this->indent(LevelManager::getLevel()),$lbrace->next,$lbrace->next->next);
 					}
 				break;
 			}

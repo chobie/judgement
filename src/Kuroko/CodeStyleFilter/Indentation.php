@@ -11,12 +11,15 @@ class Indentation extends CodeStyleFilter
 	public function apply(DoubleLinkedListNode $node)
 	{
 		$token = $node->data;
-		if($token->type == Token::T_INDENT) {
-			$length = strlen($token->data);
-			if ($length) {
-				//@todo implemnt tab and spaces.
-				$token->data = str_repeat(" ",$length * $this->config['indents.indent']);
+
+		if ($token->type == Token::T_INDENT) {
+			$level = LevelManager::getLevel();
+
+			if ($node->next->data->type == Token::T_BRACE_RIGHT) {
+				$level--;
 			}
+
+			$token->data = str_repeat(($this->config['indents.use_tab']) ? "\t" : " ",$level * $this->config['indents.indent']);
 		}
 	}
 }

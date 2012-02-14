@@ -18,7 +18,8 @@ class FilterCommand extends Command
 			->setName('filter')
 			->setDescription('show useage')
 			->setHelp("")
-			->addArgument("path");
+			->addArgument("path")
+			->addOption("config","c",\Symfony\Component\Console\Input\InputOption::VALUE_OPTIONAL,"config file","config.xml")
 		;
 	}
 
@@ -27,7 +28,7 @@ class FilterCommand extends Command
 		$path = $input->getArgument("path");
 
 		$config = new Config(
-			new XMLFileLoader("config.xml")
+			new XMLFileLoader($input->getOption("config"))
 		);
 
 		$string = file_get_contents($path);
@@ -89,6 +90,6 @@ class FilterCommand extends Command
 		$current = $list->front;
 		do {
 			echo $current->data->data;
-		} while ($current = $current->next());
+		} while ($current = $current->next);
 	}
 }
