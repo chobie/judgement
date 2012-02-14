@@ -8,6 +8,7 @@ use \Kuroko\Token;
 class LevelManager extends CodeStyleFilter
 {
 	protected static $level = 0;
+	protected static $sublevel = 0;
 	protected static $paren = 0;
 	protected static $case = 0;
 	protected static $within_class = false;
@@ -45,10 +46,14 @@ class LevelManager extends CodeStyleFilter
 		} else if ($token->type == Token::T_CASE || $token->type == Token::T_DEFAULT) {
 			/* for switch statement */
 			// self::$within_switch[count(self::$within_switch)-1];
-			self::$level++;
+			// for now, do not increase level when meet case or default statement.
+			//self::$level++;
+			self::$sublevel++;
 			self::$case++;
 		} else if ($token->type == Token::T_BREAK && (self::$case > 0)) {
-			self::$level--;
+			// for now, do not increase level when meet case or default statement.
+			//self::$level--;
+			self::$sublevel--;
 			self::$case--;
 		}
 
@@ -67,8 +72,13 @@ class LevelManager extends CodeStyleFilter
 		return (bool)(self::$within_class);
 	}
 
+	public static function isInsideSwitch()
+	{
+		return (bool)(self::$within_switch);
+	}
+
 	public static function getLevel()
 	{
-		return self::$level;
+		return self::$level + self::$sublevel;
 	}
 }

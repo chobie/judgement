@@ -25,6 +25,9 @@ class Foo {
 						break;
 					case 2:
 						$s1 = 'two';
+						if ($s1 == 'two') {
+						}
+
 						break;
 					default:
 						$s1 = 'other';
