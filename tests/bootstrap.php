@@ -7,7 +7,7 @@ load();
 
 class Judgement_CodeStyleFilter_TestCase extends PHPUnit_Framework_TestCase
 {
-		public function getConfig()
+	public function getConfig()
 	{
 		return new Kuroko\Config(
 			new Kuroko\Config\XMLFileLoader("config.xml")
@@ -18,7 +18,13 @@ class Judgement_CodeStyleFilter_TestCase extends PHPUnit_Framework_TestCase
 	{
 		$current = $node->front;
 		do {
-			$filter->apply($current);
+			if (is_array($filter)) {
+				foreach ($filter as $f) {
+					$f->apply($current);
+				}
+			} else {
+				$filter->apply($current);
+			}
 		} while ($current = $current->next());
 	}
 

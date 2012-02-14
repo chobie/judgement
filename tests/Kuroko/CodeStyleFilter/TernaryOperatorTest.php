@@ -1,6 +1,7 @@
 <?php
 
 use Kuroko\CodeStyleFilter\TernaryOperator;
+use Kuroko\CodeStyleFilter\LevelManager;
 use Kuroko\Config;
 use Kuroko\Config\XMLFileLoader;
 use Kuroko\Token;
@@ -18,8 +19,13 @@ EOF;
 		$config = $this->getConfig();
 		$tokens = $this->getTokens($script);
 
-		$filter = new TernaryOperator($config);
+		$filter = array(
+			new LevelManager($config),
+			new TernaryOperator($config),
+		);
+
 		$this->apply($filter, $tokens);
+
 		$result = $this->render($tokens);
 
 		$this->assertEquals('<?php $abc = isset($abc) ? $def: $mode;',$result);
