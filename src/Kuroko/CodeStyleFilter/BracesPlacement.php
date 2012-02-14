@@ -78,6 +78,14 @@ class BracesPlacement extends CodeStyleFilter
 					}
 				break;
 			}
+		} else if ($token->type == Token::T_BRACE_RIGHT) {
+/*			$rbrace = $node;
+			if ($rbrace->next->data->type != Token::T_NEWLINE) {
+				if (!is_null($rbrace->next)) {
+					$this->inject($this->newline(), $rbrace, $rbrace->next);
+					$this->inject($this->indent(LevelManager::getLevel()),$rbrace->next,$rbrace->next->next);
+				}
+			}*/
 		}
 	}
 }
