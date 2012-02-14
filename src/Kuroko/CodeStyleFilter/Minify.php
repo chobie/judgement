@@ -15,6 +15,10 @@ class Minify extends CodeStyleFilter
 	{
 		$token = $node->data;
 
+		if (!LevelManager::isInsideMethod()) {
+			$this->map = array();
+		}
+
 		if ($token->type == Token::T_NEWLINE && $node->previous->data->type != Token::T_OPEN_TAG) {
 			$this->delete($node);
 		}
