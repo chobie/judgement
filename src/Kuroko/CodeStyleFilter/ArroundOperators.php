@@ -33,6 +33,7 @@ class ArroundOperators extends CodeStyleFilter
 			case "^":
 			case "%":
 			case ".":
+			case "use":
 				if ($node->previous->data->type != T_WHITESPACE) {
 					$this->inject($this->whitespace(), $node->previous, $node);
 				}

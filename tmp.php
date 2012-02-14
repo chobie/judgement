@@ -31,6 +31,12 @@ class Foo {
 						break;
 					default:
 						$s1 = 'other';
+						$a = function($a=null)use($a){
+							$b = function($c=null)use($d){
+
+							}
+							return $b();
+						}
 						break;
 				}
 			} catch(exception $e){

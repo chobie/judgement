@@ -26,8 +26,10 @@ class Others extends CodeStyleFilter
 							break;
 						} else {
 							/* omitted visibility: force add public visibility */
-							$this->inject($this->whitespace(1),$node->previous,$node);
-							$this->inject($this->newVisibility(),$node->previous->previous,$node->previous);
+							if (!LevelManager::isInsideMethod()) {
+								$this->inject($this->whitespace(1),$node->previous,$node);
+								$this->inject($this->newVisibility(),$node->previous->previous,$node->previous);
+							}
 							break;
 						}
 					}

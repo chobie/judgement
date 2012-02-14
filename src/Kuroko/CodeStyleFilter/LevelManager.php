@@ -12,8 +12,11 @@ class LevelManager extends CodeStyleFilter
 	protected static $paren = 0;
 	protected static $case = 0;
 	protected static $within_class = false;
+	protected static $within_method = false;
 	protected static $within_switch = array();
+	protected static $brace_left_callback = array();
 	protected static $brace_right_callback = array();
+	protected static $current_block = array();
 
 	public function decreaseSwitch()
 	{
@@ -25,6 +28,11 @@ class LevelManager extends CodeStyleFilter
 		$token = $node->data;
 		if ($token->type == Token::T_BRACE_LEFT) {
 			self::$level++;
+			if (isset(self::$brace_left_callback[self::$level])) {
+				while($callback = array_pop(self::$brace_left_callback[self::$level])) {
+					call_user_func_array($callback, array());
+				}
+			}
 		} else if ($token->type == Token::T_BRACE_RIGHT) {
 			self::$level--;
 			if (self::$level == 0 && self::$within_class) {
@@ -59,7 +67,22 @@ class LevelManager extends CodeStyleFilter
 
 		if ($token->type == Token::T_CLASS) {
 			self::$within_class = true;
+		} else if ($token->type == Token::T_FUNCTION) {
+			if (self::isInsideClass()) {
+				self::$brace_left_callback[self::getLevel()+1][] = array($this, "withinMethod");
+				self::$brace_right_callback[self::getLevel()][] = array($this, "moe");
+			}
 		}
+	}
+
+	public function withinMethod()
+	{
+		self::$within_method = true;
+	}
+
+	public function moe()
+	{
+		self::$within_method = false;
 	}
 
 	public static function isInsideParentheses()
@@ -70,6 +93,11 @@ class LevelManager extends CodeStyleFilter
 	public static function isInsideClass()
 	{
 		return (bool)(self::$within_class);
+	}
+
+	public static function isInsideMethod()
+	{
+		return (bool)(self::$within_method);
 	}
 
 	public static function isInsideSwitch()
