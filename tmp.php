@@ -6,6 +6,11 @@ class Foo {
 		$arr = array(0 => "zero", 1=>"one");
 		for($i = 0; $i < $x; $i++){$y +=($y^0x123)<<2;}
 		$k = $x > 15 ? 1 : 2;
+
+		for($i = 0; $i < 10; $i++):
+			echo 1;
+		endfor;
+
 		do {
 			try {
 				if(0 < $x && !$x < 10){
@@ -20,6 +25,7 @@ class Foo {
 				}
 				$j =(int)$z;
 				switch($j){
+					case 1:
 					case 0:
 						$s1 = 'zero';
 						break;
